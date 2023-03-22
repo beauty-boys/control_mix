@@ -13,8 +13,10 @@
 #include "C28x_FPU_FastRTS.h"
 #include "F28x_Project.h"   // Device Headerfile and Examples Include File
 
+
 #pragma CODE_SECTION(az1gendq_calc, ".TI.ramfunc");
 extern Uint32 Sector_out;
+extern Uint32 judge_N(Uint32 N);
 
 typedef struct  { float  Ualpha;            // Input: reference alpha-axis phase voltage
                   float Ubeta;          // Input: reference beta-axis phase voltage

@@ -26,7 +26,7 @@ void nsgendq_calc(NSGENDQ *v)
 //    m=0.75;
     m = sqrt((v->Ualpha*v->Ualpha+v->Ualpha*v->Ualpha));
     Sector=judge_ns_sector(the);
-    Sector_out = judge_nsN(Sector);//ÅÐ¶ÏÉÈÇøN->Êý×Ö
+    Sector_out = judge_N(Sector);//ÅÐ¶ÏÉÈÇøN->Êý×Ö
     conter_time(time,m,Sector_out,the);
     switch(Sector_out)
     {
@@ -100,7 +100,6 @@ void nsgendq_calc(NSGENDQ *v)
     }
 }
 
-
 Uint32 judge_ns_sector(float theta)
 {
 
@@ -134,26 +133,6 @@ Uint32 judge_ns_sector(float theta)
         }
 }
 
-Uint32 judge_nsN(Uint32 N)
-{
-    switch(N)
-    {
-    case 3:
-        return 1;
-    case 1:
-        return 2;
-    case 5:
-        return 3;
-    case 4:
-        return 4;
-    case 6:
-        return 5;
-    case 2:
-        return 6;
-    default:
-        return 0;
-    }
-}
 void conter_time(float *timer,float m,Uint32 N,float theta)
 {
     *timer = 1-m*sin(theta-PI/3*N+PI*2/3);

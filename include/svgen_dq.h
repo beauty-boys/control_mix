@@ -35,4 +35,8 @@ Prototypes for the functions in SVGEN_DQ.C
 ------------------------------------------------------------------------------*/
 void svgendq_calc(SVGENDQ_handle);
 
+extern Uint32 Sector_out;
+
+Uint32 judge_N(Uint32 N);
+
 #endif // __SVGEN_DQ_H__

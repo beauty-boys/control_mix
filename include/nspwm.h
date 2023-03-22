@@ -13,10 +13,11 @@
 #include "F28x_Project.h"
 #include <math.h>
 
+
 #pragma CODE_SECTION(nsgendq_calc, ".TI.ramfunc");
 
 extern Uint32 Sector_out;
-
+extern Uint32 judge_N(Uint32 N);
 
 
 typedef struct  { float  Ualpha;            // Input: reference alpha-axis phase voltage
@@ -40,7 +41,6 @@ Prototypes for the functions in SVGEN_DQ.C
 void nsgendq_calc(NSGENDQ_handle);
 
 
-Uint32 judge_nsN(Uint32 N);
 Uint32 judge_ns_sector(float theta);
 
 void conter_time(float *timer,float m,Uint32 N,float theta);

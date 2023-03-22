@@ -1,7 +1,7 @@
 ******************************************************************************
              TMS320C2000 Linker PC v22.6.0                     
 ******************************************************************************
->> Linked Wed Mar 22 14:00:46 2023
+>> Linked Wed Mar 22 19:29:23 2023
 
 OUTPUT FILE NAME:   <White_Module_SiC_Inverter.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00083b28
@@ -13,7 +13,7 @@ MEMORY CONFIGURATION
 ----------------------  --------  ---------  --------  --------  ----  --------
 PAGE 0:
   RAMM0                 00000122   000002de  00000000  000002de  RWIX
-  RAMLS0                00008000   00000d00  00000acd  00000233  RWIX
+  RAMLS0                00008000   00000d00  00000acf  00000231  RWIX
   RAMLS1                00008d00   00000300  00000000  00000300  RWIX
   RAMLS2                00009000   00000800  00000000  00000800  RWIX
   RAMLS3                00009800   00000800  00000000  00000800  RWIX
@@ -23,9 +23,9 @@ PAGE 0:
   RAMGS15               0001b000   00001000  00000000  00001000  RWIX
   BEGIN                 00080000   00000002  00000002  00000000  RWIX
   FLASHA                00080002   00001ffe  00000000  00001ffe  RWIX
-  FLASHB                00082000   00002000  00001e84  0000017c  RWIX
+  FLASHB                00082000   00002000  00001eac  00000154  RWIX
   FLASHC                00084000   00002000  00000000  00002000  RWIX
-  FLASHD                00086000   00002000  0000042d  00001bd3  RWIX
+  FLASHD                00086000   00002000  0000042f  00001bd1  RWIX
   FLASHE                00088000   00008000  00000000  00008000  RWIX
   FLASHF                00090000   00008000  000001c9  00007e37  RWIX
   FLASHG                00098000   00008000  00000000  00008000  RWIX
@@ -187,16 +187,16 @@ codestart
 .pinit     0    00082000    00000000     UNINITIALIZED
 
 .TI.ramfunc 
-*          0    00086000    0000042d     RUN ADDR = 00008000
-                  00086000    000001a2     svgen_dq.obj (.TI.ramfunc)
-                  000861a2    000000ba     pid_reg3.obj (.TI.ramfunc)
-                  0008625c    0000009e     ipark.obj (.TI.ramfunc)
-                  000862fa    0000008a     rampgen.obj (.TI.ramfunc)
-                  00086384    00000037     F2837xD_SysCtrl.obj (.TI.ramfunc)
-                  000863bb    0000002e     clarke.obj (.TI.ramfunc)
-                  000863e9    0000002d     park.obj (.TI.ramfunc)
-                  00086416    00000013     Angle.obj (.TI.ramfunc)
-                  00086429    00000004     F2837xD_usDelay.obj (.TI.ramfunc)
+*          0    00086000    0000042f     RUN ADDR = 00008000
+                  00086000    000001a4     svgen_dq.obj (.TI.ramfunc)
+                  000861a4    000000ba     pid_reg3.obj (.TI.ramfunc)
+                  0008625e    0000009e     ipark.obj (.TI.ramfunc)
+                  000862fc    0000008a     rampgen.obj (.TI.ramfunc)
+                  00086386    00000037     F2837xD_SysCtrl.obj (.TI.ramfunc)
+                  000863bd    0000002e     clarke.obj (.TI.ramfunc)
+                  000863eb    0000002d     park.obj (.TI.ramfunc)
+                  00086418    00000013     Angle.obj (.TI.ramfunc)
+                  0008642b    00000004     F2837xD_usDelay.obj (.TI.ramfunc)
 
 GETBUFFER 
 *          0    0003f800    00000000     DSECT
@@ -208,10 +208,10 @@ PUTREADIDX
 *          0    0003f800    00000000     DSECT
 
 FPUmathTables 
-*          0    0000842e    000006a0     
-                  0000842e    000006a0     FPUmathTables.obj (FPUmathTables)
+*          0    00008430    000006a0     
+                  00008430    000006a0     FPUmathTables.obj (FPUmathTables)
 
-.text      0    00082230    00001c56     
+.text      0    00082230    00001c7e     
                   00082230    0000085d     SVPWM.obj (.text)
                   00082a8d    00000585     F2837xD_DefaultISR.obj (.text:retain)
                   00083012    00000347     F2837xD_SysCtrl.obj (.text)
@@ -229,18 +229,19 @@ FPUmathTables
                   00083d0e    00000032     memcpy.obj (.text)
                   00083d40    00000029     rts2800_fpu32.lib : exit.c.obj (.text)
                   00083d69    00000028     F2837xD_PieCtrl.obj (.text)
-                  00083d91    00000026     F2837xD_PieVect.obj (.text)
-                  00083db7    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
-                  00083ddb    00000021     sqrt_f32.obj (.text)
-                  00083dfc    0000001c     isqrt_f32.obj (.text)
-                  00083e18    00000019     div_f32.obj (.text)
-                  00083e31    00000018     rts2800_fpu32.lib : ll_aox28.asm.obj (.text)
-                  00083e49    00000016     Angle.obj (.text)
-                  00083e5f    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
-                  00083e71    00000009     ipark.obj (.text)
-                  00083e7a    00000009     rts2800_fpu32.lib : _lock.c.obj (.text)
-                  00083e83    00000002                       : pre_init.c.obj (.text)
-                  00083e85    00000001                       : startup.c.obj (.text)
+                  00083d91    00000028     svgen_dq.obj (.text)
+                  00083db9    00000026     F2837xD_PieVect.obj (.text)
+                  00083ddf    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
+                  00083e03    00000021     sqrt_f32.obj (.text)
+                  00083e24    0000001c     isqrt_f32.obj (.text)
+                  00083e40    00000019     div_f32.obj (.text)
+                  00083e59    00000018     rts2800_fpu32.lib : ll_aox28.asm.obj (.text)
+                  00083e71    00000016     Angle.obj (.text)
+                  00083e87    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
+                  00083e99    00000009     ipark.obj (.text)
+                  00083ea2    00000009     rts2800_fpu32.lib : _lock.c.obj (.text)
+                  00083eab    00000002                       : pre_init.c.obj (.text)
+                  00083ead    00000001                       : startup.c.obj (.text)
 
 .econst    0    00090000    000001c9     
                   00090000    000001c0     F2837xD_PieVect.obj (.econst:_PieVectTableInit)
@@ -670,7 +671,7 @@ MODULE SUMMARY
        FPUmathTables.obj                0      1696               0                 
        F2837xD_DefaultISR.obj           1413   0                  0                 
        F2837xD_SysCtrl.obj              949    0                  0                 
-       svgen_dq.obj                     836    0                  0                 
+       svgen_dq.obj                     880    0                  0                 
        F2837xD_Emif.obj                 796    0                  0                 
        F2837xD_Gpio.obj                 580    0                  0                 
        F2837xD_PieVect.obj              38     448                0                 
@@ -696,7 +697,7 @@ MODULE SUMMARY
        F2837xD_sci_io.obj               0      4                  1                 
        F2837xD_CodeStartBranch.obj      2      0                  0                 
     +--+--------------------------------+------+------------------+--------------------+
-       Total:                           6666   2148               8760              
+       Total:                           6710   2148               8760              
                                                                                     
     D:\software\ti\ccs1220\ccs\tools\compiler\ti-cgt-c2000_22.6.0.LTS\lib\rts2800_fpu32.lib
        boot28.asm.obj                   86     0                  0                 
@@ -712,7 +713,7 @@ MODULE SUMMARY
                                                                                     
        Stack:                           0      0                  512               
     +--+--------------------------------+------+------------------+--------------------+
-       Grand Total:                     9394   2709               9724              
+       Grand Total:                     9438   2709               9724              
 
 
 GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
@@ -852,17 +853,17 @@ address     data page           name
 
 00007f00     1fc (00007f00)     _GpioDataRegs
 
-0000842e     210 (00008400)     _FPUsinTable
+00008430     210 (00008400)     _FPUsinTable
 
-0000852e     214 (00008500)     _FPUcosTable
+00008530     214 (00008500)     _FPUcosTable
 
-0000882e     220 (00008800)     _FPUsinTableEnd
+00008830     220 (00008800)     _FPUsinTableEnd
 
-00008930     224 (00008900)     _FPUatan2HalfPITable
-00008930     224 (00008900)     _FPUcosTableEnd
-00008934     224 (00008900)     _FPUatan2Table
+00008932     224 (00008900)     _FPUatan2HalfPITable
+00008932     224 (00008900)     _FPUcosTableEnd
+00008936     224 (00008900)     _FPUatan2Table
 
-00008aba     22a (00008a80)     _FPUatan2TableEnd
+00008abc     22a (00008a80)     _FPUatan2TableEnd
 
 0000a800     2a0 (0000a800)     _DAHALF
 0000a801     2a0 (0000a800)     _i
@@ -1019,10 +1020,10 @@ page  address   name
 ----  -------   ----                                  
 abs   ffffffff  .text                                 
 0     00083d40  C$$EXIT                               
-0     00083e18  FS$$DIV                               
-0     00083e31  LL$$AND                               
-0     00083e39  LL$$OR                                
-0     00083e41  LL$$XOR                               
+0     00083e40  FS$$DIV                               
+0     00083e59  LL$$AND                               
+0     00083e61  LL$$OR                                
+0     00083e69  LL$$XOR                               
 1     0000a8a0  _AD2S                                 
 1     0000a812  _AD2S1210                             
 1     0000a810  _AD7606                               
@@ -1198,20 +1199,20 @@ abs   ffffffff  .text
 1     00000022  _EmuKey                               
 0     00083d88  _EnableInterrupts                     
 1     0000a806  _Error_Flag                           
-0     00008429  _F28x_usDelay                         
+0     0000842b  _F28x_usDelay                         
 0     00082fb5  _FLASH_CORRECTABLE_ERROR_ISR          
 0     00082e89  _FPU_OVERFLOW_ISR                     
 0     00082e93  _FPU_UNDERFLOW_ISR                    
-0     00008930  _FPUatan2HalfPITable                  
-0     00008934  _FPUatan2Table                        
-0     00008aba  _FPUatan2TableEnd                     
-0     0000852e  _FPUcosTable                          
-0     00008930  _FPUcosTableEnd                       
-0     0000842e  _FPUsinTable                          
-0     0000882e  _FPUsinTableEnd                       
+0     00008932  _FPUatan2HalfPITable                  
+0     00008936  _FPUatan2Table                        
+0     00008abc  _FPUatan2TableEnd                     
+0     00008530  _FPUcosTable                          
+0     00008932  _FPUcosTableEnd                       
+0     00008430  _FPUsinTable                          
+0     00008830  _FPUsinTableEnd                       
 1     0005f800  _Flash0CtrlRegs                       
 1     0005fb00  _Flash0EccRegs                        
-0     000083ad  _FlashOff                             
+0     000083af  _FlashOff                             
 1     00050024  _FlashPumpSemaphoreRegs               
 0     0008386e  _GPIO_EnableUnbondedIOPullups         
 0     00083849  _GPIO_EnableUnbondedIOPullupsFor100Pin
@@ -1263,11 +1264,11 @@ abs   ffffffff  .text
 0     00083adc  _InitEPwm9Gpio                        
 0     00082471  _InitEPwmExample                      
 0     00083a2b  _InitEPwmGpio                         
-0     00008384  _InitFlash                            
+0     00008386  _InitFlash                            
 0     00083675  _InitGpio                             
 0     0008304f  _InitPeripheralClocks                 
 0     00083d69  _InitPieCtrl                          
-0     00083d91  _InitPieVectTable                     
+0     00083db9  _InitPieVectTable                     
 0     00083012  _InitSysCtrl                          
 0     00083120  _InitSysPll                           
 0     0008269c  _Init_AD2S1210                        
@@ -1314,11 +1315,11 @@ abs   ffffffff  .text
 0     00082fbf  _RAM_ACCESS_VIOLATION_ISR             
 0     00082fab  _RAM_CORRECTABLE_ERROR_ISR            
 0     00082aab  _RTOS_ISR                             
-0     0008642d  _RamfuncsLoadEnd                      
-abs   0000042d  _RamfuncsLoadSize                     
+0     0008642f  _RamfuncsLoadEnd                      
+abs   0000042f  _RamfuncsLoadSize                     
 0     00086000  _RamfuncsLoadStart                    
-0     0000842d  _RamfuncsRunEnd                       
-abs   0000042d  _RamfuncsRunSize                      
+0     0000842f  _RamfuncsRunEnd                       
+abs   0000042f  _RamfuncsRunSize                      
 0     00008000  _RamfuncsRunStart                     
 0     000830fa  _ReleaseFlashPump                     
 1     0005e608  _RomPrefetchRegs                      
@@ -1417,27 +1418,27 @@ abs   ffffffff  ___c_args__
 abs   ffffffff  ___etext__                            
 abs   ffffffff  ___pinit__                            
 abs   ffffffff  ___text__                             
-0     00083e5f  __args_main                           
+0     00083e87  __args_main                           
 1     0000a9c0  __lock                                
-0     00083e82  __nop                                 
-0     00083e7e  __register_lock                       
-0     00083e7a  __register_unlock                     
+0     00083eaa  __nop                                 
+0     00083ea6  __register_lock                       
+0     00083ea2  __register_unlock                     
 1     00000400  __stack                               
-0     00083e85  __system_post_cinit                   
-0     00083e83  __system_pre_init                     
+0     00083ead  __system_post_cinit                   
+0     00083eab  __system_pre_init                     
 1     0000a9c2  __unlock                              
 0     00083d40  _abort                                
 1     0000a88e  _angle1                               
 0     00082411  _angleREAD                            
-0     00008416  _angle_calc                           
+0     00008418  _angle_calc                           
 0     00083c19  _atan                                 
 0     00083b7e  _atan2                                
 1     0000a82c  _bianma                               
 1     0000a82e  _bianma1                              
 0     00083b28  _c_int00                              
 1     0000a8aa  _clarke1                              
-0     000083bb  _clarke_calc                          
-0     00083db7  _copy_in                              
+0     000083bd  _clarke_calc                          
+0     00083ddf  _copy_in                              
 0     00083ca6  _cos                                  
 1     0000a9c4  _deviceOpen                           
 0     000838b9  _epwm4_isr                            
@@ -1450,16 +1451,17 @@ abs   ffffffff  ___text__
 1     0000a840  _idref                                
 1     0000a846  _idref1                               
 1     0000a8e8  _ipark1                               
-0     0000825c  _ipark_calc                           
+0     0000825e  _ipark_calc                           
 1     0000a856  _iq_Test                              
 1     0000a84a  _iqcan1                               
 1     0000a842  _iqref                                
 1     0000a844  _iqref1                               
 1     0000a822  _iqtest                               
-0     00083dfc  _isqrt                                
+0     00083e24  _isqrt                                
 1     0000a804  _iss                                  
 1     0000a802  _j                                    
 0     00082a4a  _jieshou                              
+0     00083d91  _judge_N                              
 1     0000a803  _k                                    
 0     00082239  _main                                 
 0     00083d0e  _memcpy                               
@@ -1467,12 +1469,12 @@ abs   ffffffff  ___text__
 1     0000a82a  _msg6                                 
 1     0000a882  _msgCount                             
 1     0000a8cc  _park1                                
-0     000083e9  _park_calc                            
+0     000083eb  _park_calc                            
 1     0000a900  _pid1_id                              
 1     0000a940  _pid1_iq                              
 1     0000a980  _pid1_spd                             
-0     000081a2  _pid_reg3_calc                        
-0     000082fa  _rampgen_calc                         
+0     000081a4  _pid_reg3_calc                        
+0     000082fc  _rampgen_calc                         
 1     0000a8da  _rg1                                  
 0     00082a0c  _scic_echoback_init                   
 0     00082a42  _scic_fifo_init                       
@@ -1490,7 +1492,7 @@ abs   ffffffff  ___text__
 0     000835f8  _setup_emif2_pinmux_sdram_16bit       
 0     00083cda  _sin                                  
 0     00083c63  _sincos                               
-0     00083ddb  _sqrt                                 
+0     00083e03  _sqrt                                 
 1     0000a8c0  _svgen_dq1                            
 0     00008000  _svgendq_calc                         
 1     0000a832  _temp                                 
@@ -1512,23 +1514,23 @@ page  address   name
 0     00000ce0  _Cla1SoftIntRegs                      
 0     00008000  _RamfuncsRunStart                     
 0     00008000  _svgendq_calc                         
-0     000081a2  _pid_reg3_calc                        
-0     0000825c  _ipark_calc                           
-0     000082fa  _rampgen_calc                         
-0     00008384  _InitFlash                            
-0     000083ad  _FlashOff                             
-0     000083bb  _clarke_calc                          
-0     000083e9  _park_calc                            
-0     00008416  _angle_calc                           
-0     00008429  _F28x_usDelay                         
-0     0000842d  _RamfuncsRunEnd                       
-0     0000842e  _FPUsinTable                          
-0     0000852e  _FPUcosTable                          
-0     0000882e  _FPUsinTableEnd                       
-0     00008930  _FPUatan2HalfPITable                  
-0     00008930  _FPUcosTableEnd                       
-0     00008934  _FPUatan2Table                        
-0     00008aba  _FPUatan2TableEnd                     
+0     000081a4  _pid_reg3_calc                        
+0     0000825e  _ipark_calc                           
+0     000082fc  _rampgen_calc                         
+0     00008386  _InitFlash                            
+0     000083af  _FlashOff                             
+0     000083bd  _clarke_calc                          
+0     000083eb  _park_calc                            
+0     00008418  _angle_calc                           
+0     0000842b  _F28x_usDelay                         
+0     0000842f  _RamfuncsRunEnd                       
+0     00008430  _FPUsinTable                          
+0     00008530  _FPUcosTable                          
+0     00008830  _FPUsinTableEnd                       
+0     00008932  _FPUatan2HalfPITable                  
+0     00008932  _FPUcosTableEnd                       
+0     00008936  _FPUatan2Table                        
+0     00008abc  _FPUatan2TableEnd                     
 0     00080000  code_start                            
 0     00082000  ___cinit__                            
 0     00082000  cinit                                 
@@ -1766,22 +1768,23 @@ page  address   name
 0     00083d42  _exit                                 
 0     00083d69  _InitPieCtrl                          
 0     00083d88  _EnableInterrupts                     
-0     00083d91  _InitPieVectTable                     
-0     00083db7  _copy_in                              
-0     00083ddb  _sqrt                                 
-0     00083dfc  _isqrt                                
-0     00083e18  FS$$DIV                               
-0     00083e31  LL$$AND                               
-0     00083e39  LL$$OR                                
-0     00083e41  LL$$XOR                               
-0     00083e5f  __args_main                           
-0     00083e7a  __register_unlock                     
-0     00083e7e  __register_lock                       
-0     00083e82  __nop                                 
-0     00083e83  __system_pre_init                     
-0     00083e85  __system_post_cinit                   
+0     00083d91  _judge_N                              
+0     00083db9  _InitPieVectTable                     
+0     00083ddf  _copy_in                              
+0     00083e03  _sqrt                                 
+0     00083e24  _isqrt                                
+0     00083e40  FS$$DIV                               
+0     00083e59  LL$$AND                               
+0     00083e61  LL$$OR                                
+0     00083e69  LL$$XOR                               
+0     00083e87  __args_main                           
+0     00083ea2  __register_unlock                     
+0     00083ea6  __register_lock                       
+0     00083eaa  __nop                                 
+0     00083eab  __system_pre_init                     
+0     00083ead  __system_post_cinit                   
 0     00086000  _RamfuncsLoadStart                    
-0     0008642d  _RamfuncsLoadEnd                      
+0     0008642f  _RamfuncsLoadEnd                      
 0     00090000  _PieVectTableInit                     
 1     00000002  _DcsmZ1Otp                            
 1     00000022  _EmuKey                               
@@ -1981,8 +1984,8 @@ page  address   name
 1     0005f800  _Flash0CtrlRegs                       
 1     0005fb00  _Flash0EccRegs                        
 abs   00000200  __STACK_SIZE                          
-abs   0000042d  _RamfuncsLoadSize                     
-abs   0000042d  _RamfuncsRunSize                      
+abs   0000042f  _RamfuncsLoadSize                     
+abs   0000042f  _RamfuncsRunSize                      
 abs   ffffffff  .text                                 
 abs   ffffffff  ___TI_pprof_out_hndl                  
 abs   ffffffff  ___TI_prof_data_size                  
@@ -1996,4 +1999,4 @@ abs   ffffffff  binit
 abs   ffffffff  etext                                 
 abs   ffffffff  pinit                                 
 
-[486 symbols]
+[487 symbols]

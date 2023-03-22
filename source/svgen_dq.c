@@ -18,8 +18,9 @@
 
 #include "C28x_FPU_FastRTS.h"
 #include "svgen_dq.h"
+
 #pragma CODE_SECTION(svgendq_calc, ".TI.ramfunc");
-extern Uint32 Sector_out;
+
 void svgendq_calc(SVGENDQ *v)
 {	
 
@@ -98,7 +99,29 @@ void svgendq_calc(SVGENDQ *v)
        v->Ta = v->Tc+t1;                             // taon = tcon+t1
        v->Tb = v->Ta+t2;                             // tbon = taon+t2 
     }
-     Sector_out=Sector;
+    Sector_out = judge_N(Sector);
+}
+
+
+Uint32 judge_N(Uint32 N)
+{
+    switch(N)
+    {
+    case 3:
+        return 1;
+    case 1:
+        return 2;
+    case 5:
+        return 3;
+    case 4:
+        return 4;
+    case 6:
+        return 5;
+    case 2:
+        return 6;
+    default:
+        return 0;
+    }
 }
 
 

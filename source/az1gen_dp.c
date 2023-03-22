@@ -107,8 +107,9 @@ void az1gendq_calc(AZ1GENDQ *v)
        EPwm2Regs.TBPHS.bit.TBPHS =0 ;        // Phase is 0
        EPwm3Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
     }
-
-     Sector_out=Sector;
-
+    Sector_out =  judge_N(Sector);
 }
+
+
+
 
