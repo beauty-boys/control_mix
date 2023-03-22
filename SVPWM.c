@@ -14,6 +14,7 @@
 **********************************************/
 // Included Files
 //
+
 #include "F28x_Project.h"   // Device Headerfile and Examples Include File
 #include "bianliang.h"
 #include "C28x_FPU_FastRTS.h"   // FastRTS
@@ -21,6 +22,9 @@
 #include "math.h"
 #include "parameter.h"
 #include "stdlib.h"
+
+
+
 //YML_2022_11_5   韩守亮电机零位：1035（没改造电机）
 
 //#pragma CODE_SECTION(epwm1_isr, ".TI.ramfunc");
@@ -33,9 +37,9 @@
 //#pragma CODE_SECTION(scic_msg, ".TI.ramfunc");
 //#pragma CODE_SECTION(sendCANMessage, ".TI.ramfunc");
 //#pragma CODE_SECTION(jieshou, ".TI.ramfunc");
-#define EPWM1_TIMER_TBPRD 2000
-#define EPWM1_MIN_CMPA 500 //初始值
-#define Sample_points 2048
+
+
+
 //#define FREQUENCY 200000000/EPWM1_TIMER_TBPRD/2  这个不能用，这个数据可能溢出了，算的时候算不对
 //extern Uint16 RamfuncsLoadStart;
 //extern Uint16 RamfuncsLoadSize;

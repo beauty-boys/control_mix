@@ -1,49 +1,30 @@
+/*
+ * az1gen_dp.c
+ *
+ *  Created on: 2023年3月22日
+ *      Author: Administrator
+ */
+#include "az1gen_dp.h"
 
-/*=====================================================================================
- File name:        SVGEN_DQ.C  (IQ version)                  
-                    
- Originator:	Digital Control Systems Group
-			Texas Instruments
+void az1gendq_calc(AZ1GENDQ *v)
+{
 
- Description:  Space-vector PWM generation based on d-q components                    
+    float32 Va,Vb,Vc,t1,t2;
+    Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
 
-=====================================================================================
- History:
--------------------------------------------------------------------------------------
- 04-15-2005	Version 3.20
--------------------------------------------------------------------------------------*/
-
-
-// Don't forget to set a proper GLOBAL_Q in "IQmathLib.h" file
-
-#include "C28x_FPU_FastRTS.h"
-#include "svgen_dq.h"
-#pragma CODE_SECTION(svgendq_calc, ".TI.ramfunc");
-extern Uint32 Sector_out;
-void svgendq_calc(SVGENDQ *v)
-{	
-
-	float32 Va,Vb,Vc,t1,t2;
-	Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
-																	
 // Inverse clarke transformation  扇区判断
     Va = v->Ubeta;
-    Vb = -0.5*v->Ubeta + (0.8660254)*v->Ualpha;  // 0.8660254 = sqrt(3)/2 
+    Vb = -0.5*v->Ubeta + (0.8660254)*v->Ualpha;  // 0.8660254 = sqrt(3)/2
     Vc = (-0.5)*v->Ubeta -(0.8660254)*v->Ualpha;  // 0.8660254 = sqrt(3)/2
 
 // 60 degree Sector determination
     if (Va>0)
-       Sector = 1; 
+       Sector = 1;
     if (Vb>0)
        Sector = Sector + 2;
-    if (Vc>0)   
+    if (Vc>0)
        Sector = Sector + 4;
-       
-// X,Y,Z (Va,Vb,Vc) calculations
-    Va = v->Ubeta;                                 // X = Va U1
-    Vb = (0.5)*v->Ubeta + (0.8660254)*v->Ualpha;   // Y = Vb -U3
-    Vc = (0.5)*v->Ubeta - (0.8660254)*v->Ualpha;   // Z = Vc -U2
-    
+
     if (Sector==0)  // Sector 0: this is special case for (Ualpha,Ubeta) = (0,0)
     {
        v->Ta = 0.5;
@@ -57,6 +38,11 @@ void svgendq_calc(SVGENDQ *v)
        v->Tb = (0.5)*(1-t1-t2);      // tbon = (1-t1-t2)/2
        v->Ta = v->Tb+t1;                             // taon = tbon+t1
        v->Tc = v->Ta+t2;                             // tcon = taon+t2
+       Sector_out=2;
+
+       EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;
     }
     else if (Sector==2)  // Sector 2: t1=Y and t2=-X (abc ---> Ta,Tc,Tb)
     {
@@ -65,7 +51,11 @@ void svgendq_calc(SVGENDQ *v)
        v->Ta = (0.5)*(1-t1-t2);      // taon = (1-t1-t2)/2
        v->Tc = v->Ta+t1;                             // tcon = taon+t1
        v->Tb = v->Tc+t2;                             // tbon = tcon+t2
-    }      
+       Sector_out=6;
+       EPwm4Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS =EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+    }
     else if (Sector==3)  // Sector 3: t1=-Z and t2=X (abc ---> Ta,Tb,Tc)
     {
        t1 = -Vc;
@@ -73,7 +63,12 @@ void svgendq_calc(SVGENDQ *v)
        v->Ta =(0.5)*(1-t1-t2);      // taon = (1-t1-t2)/2
        v->Tb = v->Ta+t1;                             // tbon = taon+t1
        v->Tc = v->Tb+t2;                             // tcon = tbon+t2
-    }   
+       Sector_out=1;
+
+       EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+    }
     else if (Sector==4)  // Sector 4: t1=-X and t2=Z (abc ---> Tc,Tb,Ta)
     {
        t1 = -Va;
@@ -81,7 +76,11 @@ void svgendq_calc(SVGENDQ *v)
        v->Tc =(0.5)*(1-t1-t2);      // tcon = (1-t1-t2)/2
        v->Tb = v->Tc+t1;                             // tbon = tcon+t1
        v->Ta = v->Tb+t2;                             // taon = tbon+t2
-    }   
+       Sector_out=4;
+       EPwm4Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS =0 ;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+    }
     else if (Sector==5)  // Sector 5: t1=X and t2=-Y (abc ---> Tb,Tc,Ta)
     {
        t1 = Va;
@@ -89,16 +88,27 @@ void svgendq_calc(SVGENDQ *v)
        v->Tb =(0.5)*(1-t1-t2);      // tbon = (1-t1-t2)/2
        v->Tc = v->Tb+t1;                             // tcon = tbon+t1
        v->Ta = v->Tc+t2;                             // taon = tcon+t2
-    }   
+       Sector_out=3;
+//
+       EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS =0 ;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+    }
     else if (Sector==6)  // Sector 6: t1=-Y and t2=-Z (abc ---> Tc,Ta,Tb)
     {
        t1 = -Vb;
        t2 = -Vc;
        v->Tc =(0.5)*(1-t1-t2);      // tcon = (1-t1-t2)/2
        v->Ta = v->Tc+t1;                             // taon = tcon+t1
-       v->Tb = v->Ta+t2;                             // tbon = taon+t2 
-    }
-     Sector_out=Sector;
-}
+       v->Tb = v->Ta+t2;                             // tbon = taon+t2
+       Sector_out=5;
 
+       EPwm4Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
+       EPwm2Regs.TBPHS.bit.TBPHS =0 ;        // Phase is 0
+       EPwm3Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
+    }
+
+     Sector_out=Sector;
+
+}
 

@@ -17,6 +17,7 @@
 "./source/FPUmathTables.obj"
 "./source/atan2_f32.obj"
 "./source/atan_f32.obj"
+"./source/az1gen_dp.obj"
 "./source/clarke.obj"
 "./source/cos_f32.obj"
 "./source/div_f32.obj"
