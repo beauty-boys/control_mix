@@ -244,7 +244,6 @@ void main(void)
 // This example function is found in the F2837xD_SysCtrl.c file.
 //
     InitSysCtrl(); //这里已经把所有外设时钟都打开了
-    int i=0;
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the F2837xD_Gpio.c file and

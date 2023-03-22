@@ -24,6 +24,7 @@
 "./source/ipark.obj"
 "./source/isqrt_f32.obj"
 "./source/memcpy.obj"
+"./source/nspwm.obj"
 "./source/park.obj"
 "./source/pid_reg3.obj"
 "./source/rampgen.obj"

@@ -38,6 +38,7 @@ C_SRCS += \
 ../source/clarke.c \
 ../source/ipark.c \
 ../source/memcpy.c \
+../source/nspwm.c \
 ../source/park.c \
 ../source/pid_reg3.c \
 ../source/rampgen.c \
@@ -65,6 +66,7 @@ C_DEPS += \
 ./source/clarke.d \
 ./source/ipark.d \
 ./source/memcpy.d \
+./source/nspwm.d \
 ./source/park.d \
 ./source/pid_reg3.d \
 ./source/rampgen.d \
@@ -97,6 +99,7 @@ OBJS += \
 ./source/ipark.obj \
 ./source/isqrt_f32.obj \
 ./source/memcpy.obj \
+./source/nspwm.obj \
 ./source/park.obj \
 ./source/pid_reg3.obj \
 ./source/rampgen.obj \
@@ -147,6 +150,7 @@ OBJS__QUOTED += \
 "source\ipark.obj" \
 "source\isqrt_f32.obj" \
 "source\memcpy.obj" \
+"source\nspwm.obj" \
 "source\park.obj" \
 "source\pid_reg3.obj" \
 "source\rampgen.obj" \
@@ -174,6 +178,7 @@ C_DEPS__QUOTED += \
 "source\clarke.d" \
 "source\ipark.d" \
 "source\memcpy.d" \
+"source\nspwm.d" \
 "source\park.d" \
 "source\pid_reg3.d" \
 "source\rampgen.d" \
@@ -210,6 +215,7 @@ C_SRCS__QUOTED += \
 "../source/clarke.c" \
 "../source/ipark.c" \
 "../source/memcpy.c" \
+"../source/nspwm.c" \
 "../source/park.c" \
 "../source/pid_reg3.c" \
 "../source/rampgen.c" \

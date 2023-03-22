@@ -36,6 +36,7 @@ ORDERED_OBJS += \
 "./source/ipark.obj" \
 "./source/isqrt_f32.obj" \
 "./source/memcpy.obj" \
+"./source/nspwm.obj" \
 "./source/park.obj" \
 "./source/pid_reg3.obj" \
 "./source/rampgen.obj" \
@@ -179,8 +180,8 @@ White_Module_SiC_Inverter.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
 	-$(RM) "source\FPUmathTables.d" 
-	-$(RM) "SVPWM.obj" "source\Angle.obj" "source\F2837xD_CodeStartBranch.obj" "source\F2837xD_DefaultISR.obj" "source\F2837xD_EPwm.obj" "source\F2837xD_Emif.obj" "source\F2837xD_GlobalVariableDefs.obj" "source\F2837xD_Gpio.obj" "source\F2837xD_Ipc.obj" "source\F2837xD_PieCtrl.obj" "source\F2837xD_PieVect.obj" "source\F2837xD_Sci.obj" "source\F2837xD_SysCtrl.obj" "source\F2837xD_can.obj" "source\F2837xD_sci_io.obj" "source\F2837xD_usDelay.obj" "source\FPUmathTables.obj" "source\atan2_f32.obj" "source\atan_f32.obj" "source\az1gen_dp.obj" "source\clarke.obj" "source\cos_f32.obj" "source\div_f32.obj" "source\ipark.obj" "source\isqrt_f32.obj" "source\memcpy.obj" "source\park.obj" "source\pid_reg3.obj" "source\rampgen.obj" "source\rmp_cntl.obj" "source\sin_f32.obj" "source\sincos_f32.obj" "source\sqrt_f32.obj" "source\svgen_dq.obj" 
-	-$(RM) "SVPWM.d" "source\Angle.d" "source\F2837xD_DefaultISR.d" "source\F2837xD_EPwm.d" "source\F2837xD_Emif.d" "source\F2837xD_GlobalVariableDefs.d" "source\F2837xD_Gpio.d" "source\F2837xD_Ipc.d" "source\F2837xD_PieCtrl.d" "source\F2837xD_PieVect.d" "source\F2837xD_Sci.d" "source\F2837xD_SysCtrl.d" "source\F2837xD_can.d" "source\F2837xD_sci_io.d" "source\az1gen_dp.d" "source\clarke.d" "source\ipark.d" "source\memcpy.d" "source\park.d" "source\pid_reg3.d" "source\rampgen.d" "source\rmp_cntl.d" "source\svgen_dq.d" 
+	-$(RM) "SVPWM.obj" "source\Angle.obj" "source\F2837xD_CodeStartBranch.obj" "source\F2837xD_DefaultISR.obj" "source\F2837xD_EPwm.obj" "source\F2837xD_Emif.obj" "source\F2837xD_GlobalVariableDefs.obj" "source\F2837xD_Gpio.obj" "source\F2837xD_Ipc.obj" "source\F2837xD_PieCtrl.obj" "source\F2837xD_PieVect.obj" "source\F2837xD_Sci.obj" "source\F2837xD_SysCtrl.obj" "source\F2837xD_can.obj" "source\F2837xD_sci_io.obj" "source\F2837xD_usDelay.obj" "source\FPUmathTables.obj" "source\atan2_f32.obj" "source\atan_f32.obj" "source\az1gen_dp.obj" "source\clarke.obj" "source\cos_f32.obj" "source\div_f32.obj" "source\ipark.obj" "source\isqrt_f32.obj" "source\memcpy.obj" "source\nspwm.obj" "source\park.obj" "source\pid_reg3.obj" "source\rampgen.obj" "source\rmp_cntl.obj" "source\sin_f32.obj" "source\sincos_f32.obj" "source\sqrt_f32.obj" "source\svgen_dq.obj" 
+	-$(RM) "SVPWM.d" "source\Angle.d" "source\F2837xD_DefaultISR.d" "source\F2837xD_EPwm.d" "source\F2837xD_Emif.d" "source\F2837xD_GlobalVariableDefs.d" "source\F2837xD_Gpio.d" "source\F2837xD_Ipc.d" "source\F2837xD_PieCtrl.d" "source\F2837xD_PieVect.d" "source\F2837xD_Sci.d" "source\F2837xD_SysCtrl.d" "source\F2837xD_can.d" "source\F2837xD_sci_io.d" "source\az1gen_dp.d" "source\clarke.d" "source\ipark.d" "source\memcpy.d" "source\nspwm.d" "source\park.d" "source\pid_reg3.d" "source\rampgen.d" "source\rmp_cntl.d" "source\svgen_dq.d" 
 	-$(RM) "source\F2837xD_CodeStartBranch.d" "source\F2837xD_usDelay.d" "source\atan2_f32.d" "source\atan_f32.d" "source\cos_f32.d" "source\div_f32.d" "source\isqrt_f32.d" "source\sin_f32.d" "source\sincos_f32.d" "source\sqrt_f32.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
