@@ -13,7 +13,7 @@
 
 void nsgendq_calc(NSGENDQ *v)
 {
-    float the,m;
+    float the;
     Uint32 Sector = 0;  // Sector is treated as Q0 - independently with global Q
     float time[3]={0};
 
@@ -24,7 +24,7 @@ void nsgendq_calc(NSGENDQ *v)
         the += PI/2;
     }
 //    m=0.75;
-    m = sqrt((v->Ualpha*v->Ualpha+v->Ualpha*v->Ualpha));
+
     Sector=judge_ns_sector(the);
     Sector_out = judge_N(Sector);//ÅÐ¶ÏÉÈÇøN->Êý×Ö
     conter_time(time,m,Sector_out,the);

@@ -225,8 +225,11 @@ PIDREG3 pid1_iq = PIDREG3_DEFAULTS;
 PIDREG3 pid1_spd = PIDREG3_DEFAULTS;
 // Instance a Space Vector PWM modulator. This modulator generates a, b and c  实例一个空间矢量pwm调制器。
 // phases based on the d and q stationery reference frame inputs 该调制器基于d和q信纸参考帧输入产生a、b和c相位
-SVGENDQ svgen_dq1 = SVGENDQ_DEFAULTS;
 
+SVGENDQ svgen_dq1 = SVGENDQ_DEFAULTS;
+AZ1GENDQ az1gen_dq1 = AZ1GENDQ_DEFAULTS;
+NSGENDQ nsgen_dq1 = NSGENDQ_DEFAULTS;
+float m=0;
 
 
 // Instance a ramp generator to simulate an Anglele  使用渐变生成器来模拟角度
@@ -666,9 +669,33 @@ __interrupt void epwm4_isr(void)
             svgen_dq1.Ubeta = ipark1.Beta;
             svgen_dq1.calc(&svgen_dq1);
 
-            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);
-            EPwm2Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);
-            EPwm3Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+            az1gen_dq1.Ualpha = ipark1.Alpha;
+            az1gen_dq1.Ubeta = ipark1.Beta;
+            az1gen_dq1.calc(&az1gen_dq1);
+
+            m = sqrt(az1gen_dq1.Ualpha*az1gen_dq1.Ualpha + az1gen_dq1.Ubeta*az1gen_dq1.Ubeta);
+
+            nsgen_dq1.Ualpha = ipark1.Alpha;
+            nsgen_dq1.Ubeta = ipark1.Beta;
+            nsgen_dq1.calc(&nsgen_dq1);
+
+            if(m<0.75)
+            {
+                EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+            }
+            else
+            {
+                EPwm4Regs.CMPA.bit.CMPA  = (int16)(nsgen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                EPwm2Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                EPwm3Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+            }
+
+//            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);
+//            EPwm2Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);
+//            EPwm3Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+
 
 //          EPwm4Regs.CMPA.bit.CMPA  = (int16)(0.5*EPWM1_TIMER_TBPRD);    //拉0用
 //          EPwm2Regs.CMPA.bit.CMPA = (int16)(Duty_YML*EPWM1_TIMER_TBPRD);

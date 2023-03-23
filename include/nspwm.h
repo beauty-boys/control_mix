@@ -18,7 +18,7 @@
 
 extern Uint32 Sector_out;
 extern Uint32 judge_N(Uint32 N);
-
+extern float m;
 
 typedef struct  { float  Ualpha;            // Input: reference alpha-axis phase voltage
                   float Ubeta;          // Input: reference beta-axis phase voltage
