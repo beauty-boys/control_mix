@@ -86,7 +86,7 @@ Uint32 bianma=0;
 Uint32 bianma1=0;
 int16 XXX=0;//YML//测试，用后可删除
 int16 AngleInit=0;//编码器变量，2^23
-int32 Anglezero=655;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
+int32 Anglezero=3378;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
 //韩守亮轴承电流测试电机：零位：655（旋变2对极，电机4对）；
 float32 temp;
 float32 temp1;
@@ -226,6 +226,7 @@ PIDREG3 pid1_spd = PIDREG3_DEFAULTS;
 // Instance a Space Vector PWM modulator. This modulator generates a, b and c  实例一个空间矢量pwm调制器。
 // phases based on the d and q stationery reference frame inputs 该调制器基于d和q信纸参考帧输入产生a、b和c相位
 SVGENDQ svgen_dq1 = SVGENDQ_DEFAULTS;
+AZ1GENDQ az1gen_dq1 = AZ1GENDQ_DEFAULTS;
 
 
 
@@ -663,13 +664,22 @@ __interrupt void epwm4_isr(void)
             //    Connect inputs of the SVGEN_DQ module and call the space-vector gen.
             //    calculation function.
             // ------------------------------------------------------------------------------
-            svgen_dq1.Ualpha = ipark1.Alpha;
-            svgen_dq1.Ubeta = ipark1.Beta;
-            svgen_dq1.calc(&svgen_dq1);
+//            svgen_dq1.Ualpha = ipark1.Alpha;
+//            svgen_dq1.Ubeta = ipark1.Beta;
+//            svgen_dq1.calc(&svgen_dq1);
+//
+//            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);
+//            EPwm2Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);
+//            EPwm3Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tc*EPWM1_TIMER_TBPRD);
 
-            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);
-            EPwm2Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);
-            EPwm3Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+            az1gen_dq1.Ualpha = ipark1.Alpha;
+            az1gen_dq1.Ubeta = ipark1.Beta;
+            az1gen_dq1.calc(&az1gen_dq1);
+
+            EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+            EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+
 
 //          EPwm4Regs.CMPA.bit.CMPA  = (int16)(0.5*EPWM1_TIMER_TBPRD);    //拉0用
 //          EPwm2Regs.CMPA.bit.CMPA = (int16)(Duty_YML*EPWM1_TIMER_TBPRD);

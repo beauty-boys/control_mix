@@ -31,6 +31,7 @@ Next, Include project specific include files.
 #include "pid_reg3.h"       	// Include header for the PIDREG3 object 
 #include "clarke.h"         	// Include header for the CLARKE object 
 #include "svgen_dq.h"       	// Include header for the SVGENDQ object 
+#include "az1gen_dp.h"
 //#include "speed_fr.h"			// Include header for the SPEED_MEAS_QEP object 
 #include "rampgen.h"        	// Include header for the RAMPGEN object 
 #include "rmp_cntl.h"       	// Include header for the RMPCNTL object 
