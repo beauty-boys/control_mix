@@ -709,7 +709,8 @@ __interrupt void epwm4_isr(void)
 //          EPwm2Regs.CMPA.bit.CMPA = (int16)(Duty_YML*EPWM1_TIMER_TBPRD);
 //          EPwm3Regs.CMPA.bit.CMPA = (int16)(0.7*EPWM1_TIMER_TBPRD);
 //
-//            *(DAA)    = (int16)(Sector_out*DAHALF/6);
+            *(DAA)    = (int16)(flagggg*DAHALF/10+DAHALF);
+            //*(DAA)    = (int16)(Sector_out*DAHALF/6);
 //            *(DAB)    = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);//(int16)(park1.Ds*DAHALF)+DAHALF;
 //         // *(DAC)    = (int16)(svgen_dq1.Tc*EPWM1_TIMER_TBPRD);
 //            *(DAC)    = (int16)(rg1.Angle*DAHALF/5)+DAHALF;
