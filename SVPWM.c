@@ -47,6 +47,7 @@
 
 
 int16 DAHALF=0x0800;
+int flagggg=0;
 struct EXAD EXADRESULTS;
 
 struct SAMPLE SAMPLERUSELTS;
@@ -86,7 +87,7 @@ Uint32 bianma=0;
 Uint32 bianma1=0;
 int16 XXX=0;//YML//测试，用后可删除
 int16 AngleInit=0;//编码器变量，2^23
-int32 Anglezero=655;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
+int32 Anglezero=3078;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
 //韩守亮轴承电流测试电机：零位：655（旋变2对极，电机4对）；
 float32 temp;
 float32 temp1;
@@ -669,27 +670,34 @@ __interrupt void epwm4_isr(void)
             svgen_dq1.Ubeta = ipark1.Beta;
             svgen_dq1.calc(&svgen_dq1);
 
-            az1gen_dq1.Ualpha = ipark1.Alpha;
-            az1gen_dq1.Ubeta = ipark1.Beta;
-            az1gen_dq1.calc(&az1gen_dq1);
+//                            EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+//                            EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+//                            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
 
-            m = sqrt(az1gen_dq1.Ualpha*az1gen_dq1.Ualpha + az1gen_dq1.Ubeta*az1gen_dq1.Ubeta);
+            m = sqrt(ipark1.Alpha*ipark1.Alpha+ipark1.Beta*ipark1.Beta);
 
-            nsgen_dq1.Ualpha = ipark1.Alpha;
-            nsgen_dq1.Ubeta = ipark1.Beta;
-            nsgen_dq1.calc(&nsgen_dq1);
-
-            if(m<0.75)
+            if(m<0.75&&m>=0)
             {
+
+                az1gen_dq1.Ualpha = ipark1.Alpha;
+                az1gen_dq1.Ubeta = ipark1.Beta;
+                az1gen_dq1.calc(&az1gen_dq1);
+
                 EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
                 EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
                 EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                flagggg=0;
             }
-            else
+            else if(m>=0.75&&m<1)
             {
+                nsgen_dq1.Ualpha = ipark1.Alpha;
+                nsgen_dq1.Ubeta = ipark1.Beta;
+                nsgen_dq1.calc(&nsgen_dq1);
+
                 EPwm4Regs.CMPA.bit.CMPA  = (int16)(nsgen_dq1.Ta*EPWM1_TIMER_TBPRD);
                 EPwm2Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tb*EPWM1_TIMER_TBPRD);
                 EPwm3Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                flagggg=1;
             }
 
 //            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);

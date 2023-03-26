@@ -33,7 +33,7 @@ void nsgendq_calc(NSGENDQ *v)
     case 1://110-100-101-100-110 B- C+ A1
         //上下是一样的 因为t1t2有区别
         v->Tb = 1/2-time[2]/2;
-        v->Tc = (time[0]+time[1])/2;
+        v->Tc = (time[2]+time[1])/2;
         v->Ta = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
@@ -52,7 +52,7 @@ void nsgendq_calc(NSGENDQ *v)
         break;
     case 3://011-010-110-010-011 C- A+ B1
         v->Tc = 1/2-time[2]/2;
-        v->Ta = (time[0]+time[1])/2;
+        v->Ta = (time[2]+time[1])/2;
         v->Tb = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
@@ -72,7 +72,7 @@ void nsgendq_calc(NSGENDQ *v)
     case 5://101-001-011-001-101 A- B+ C1
 
         v->Ta = 1/2-time[2]/2;
-        v->Tb = (time[0]+time[1])/2;
+        v->Tb = (time[2]+time[1])/2;
         v->Tc = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
@@ -100,30 +100,30 @@ void nsgendq_calc(NSGENDQ *v)
     }
 }
 
-Uint32 judge_ns_sector(float theta)
+Uint32 judge_ns_sector(float theta)//-pai/2~pai/2 pai/2~3/2pai
 {
 
-        if(theta>-PI/6&&theta<PI/6)
+        if(theta>=-PI/6&&theta<PI/6)
         {
             return 3;
         }
-        else if(theta>-PI/6&&theta<PI/6)
+        else if(theta>=PI/6&&theta<=PI/2)
         {
             return 1;
         }
-        else if(theta>-PI/6&&theta<PI/6)
+        else if(theta>=PI/2&&theta<PI*5/6)
         {
             return 5;
         }
-        else if(theta>-PI/6&&theta<PI/6)
+        else if(theta>=PI*5/6&&theta<PI*7/6)
         {
             return 4;
         }
-        else if(theta>-PI/6&&theta<PI/6)
+        else if(theta>=PI*7/6&&theta<PI*3/2)
         {
             return 6;
         }
-        else if(theta>-PI/6&&theta<PI/6)
+        else if(theta>=-PI/2&&theta<-PI/6)
         {
             return 2;
         }

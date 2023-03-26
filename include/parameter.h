@@ -29,7 +29,7 @@ Next, definitions used in main file.
 #endif
 
 #define PI 3.14159265358979
-#define EPWM1_TIMER_TBPRD 2000
+#define EPWM1_TIMER_TBPRD 10000
 #define EPWM1_MIN_CMPA 500 //≥ı º÷µ
 #define Sample_points 2048
 
