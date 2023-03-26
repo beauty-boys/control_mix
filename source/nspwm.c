@@ -21,7 +21,7 @@ void nsgendq_calc(NSGENDQ *v)
     the = atan(v->Ubeta/v->Ualpha);
     if(v->Ualpha<0)
     {
-        the += PI/2;
+        the += PI;
     }
 //    m=0.75;
 
