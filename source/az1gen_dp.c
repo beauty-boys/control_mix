@@ -25,6 +25,10 @@ void az1gendq_calc(AZ1GENDQ *v)
     if (Vc>0)
        Sector = Sector + 4;
 
+    Va = v->Ubeta;
+    Vb = (0.5)*v->Ubeta + (0.8660254)*v->Ualpha;  // 0.8660254 = sqrt(3)/2
+    Vc = (0.5)*v->Ubeta - (0.8660254)*v->Ualpha;  // 0.8660254 = sqrt(3)/2
+
     if (Sector==0)  // Sector 0: this is special case for (Ualpha,Ubeta) = (0,0)
     {
        v->Ta = 0.5;
