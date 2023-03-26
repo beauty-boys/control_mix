@@ -82,7 +82,7 @@ Uint32 bianma=0;
 Uint32 bianma1=0;
 int16 XXX=0;//YML//测试，用后可删除
 int16 AngleInit=0;//编码器变量，2^23
-int32 Anglezero=655;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
+int32 Anglezero=3378;//韩守亮没改造电机：3063（旋变2对极，电机4对）__YML_2023_2_7拉零;
 //韩守亮轴承电流测试电机：零位：655（旋变2对极，电机4对）；
 float32 temp;
 float32 temp1;
