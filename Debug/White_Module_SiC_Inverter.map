@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v22.6.0                     
 ******************************************************************************
->> Linked Sun Mar 26 20:34:18 2023
+>> Linked Sun Mar 26 20:39:32 2023
 
 OUTPUT FILE NAME:   <White_Module_SiC_Inverter.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00083b3d
+ENTRY POINT SYMBOL: "_c_int00"  address: 00083b49
 
 
 MEMORY CONFIGURATION
@@ -23,7 +23,7 @@ PAGE 0:
   RAMGS15               0001b000   00001000  00000000  00001000  RWIX
   BEGIN                 00080000   00000002  00000002  00000000  RWIX
   FLASHA                00080002   00001ffe  00000000  00001ffe  RWIX
-  FLASHB                00082000   00002000  00001e98  00000168  RWIX
+  FLASHB                00082000   00002000  00001ea4  0000015c  RWIX
   FLASHC                00084000   00002000  00000000  00002000  RWIX
   FLASHD                00086000   00002000  00000627  000019d9  RWIX
   FLASHE                00088000   00008000  00000000  00008000  RWIX
@@ -212,36 +212,36 @@ FPUmathTables
 *          0    00008628    000006a0     
                   00008628    000006a0     FPUmathTables.obj (FPUmathTables)
 
-.text      0    00082240    00001c5b     
+.text      0    00082240    00001c67     
                   00082240    0000085e     SVPWM.obj (.text)
                   00082a9e    00000585     F2837xD_DefaultISR.obj (.text:retain)
                   00083023    00000347     F2837xD_SysCtrl.obj (.text)
                   0008336a    0000031c     F2837xD_Emif.obj (.text)
                   00083686    00000244     F2837xD_Gpio.obj (.text)
-                  000838ca    00000176     SVPWM.obj (.text:retain)
-                  00083a40    000000fd     F2837xD_EPwm.obj (.text)
-                  00083b3d    00000056     rts2800_fpu32.lib : boot28.asm.obj (.text)
-                  00083b93    0000004f     atan2_f32.obj (.text)
-                  00083be2    0000004c     F2837xD_can.obj (.text)
-                  00083c2e    0000004a     atan_f32.obj (.text)
-                  00083c78    00000043     sincos_f32.obj (.text)
-                  00083cbb    00000034     cos_f32.obj (.text)
-                  00083cef    00000034     sin_f32.obj (.text)
-                  00083d23    00000032     memcpy.obj (.text)
-                  00083d55    00000029     rts2800_fpu32.lib : exit.c.obj (.text)
-                  00083d7e    00000028     F2837xD_PieCtrl.obj (.text)
-                  00083da6    00000026     F2837xD_PieVect.obj (.text)
-                  00083dcc    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
-                  00083df0    00000021     sqrt_f32.obj (.text)
-                  00083e11    0000001c     isqrt_f32.obj (.text)
-                  00083e2d    00000019     div_f32.obj (.text)
-                  00083e46    00000018     rts2800_fpu32.lib : ll_aox28.asm.obj (.text)
-                  00083e5e    00000016     Angle.obj (.text)
-                  00083e74    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
-                  00083e86    00000009     ipark.obj (.text)
-                  00083e8f    00000009     rts2800_fpu32.lib : _lock.c.obj (.text)
-                  00083e98    00000002                       : pre_init.c.obj (.text)
-                  00083e9a    00000001                       : startup.c.obj (.text)
+                  000838ca    00000182     SVPWM.obj (.text:retain)
+                  00083a4c    000000fd     F2837xD_EPwm.obj (.text)
+                  00083b49    00000056     rts2800_fpu32.lib : boot28.asm.obj (.text)
+                  00083b9f    0000004f     atan2_f32.obj (.text)
+                  00083bee    0000004c     F2837xD_can.obj (.text)
+                  00083c3a    0000004a     atan_f32.obj (.text)
+                  00083c84    00000043     sincos_f32.obj (.text)
+                  00083cc7    00000034     cos_f32.obj (.text)
+                  00083cfb    00000034     sin_f32.obj (.text)
+                  00083d2f    00000032     memcpy.obj (.text)
+                  00083d61    00000029     rts2800_fpu32.lib : exit.c.obj (.text)
+                  00083d8a    00000028     F2837xD_PieCtrl.obj (.text)
+                  00083db2    00000026     F2837xD_PieVect.obj (.text)
+                  00083dd8    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
+                  00083dfc    00000021     sqrt_f32.obj (.text)
+                  00083e1d    0000001c     isqrt_f32.obj (.text)
+                  00083e39    00000019     div_f32.obj (.text)
+                  00083e52    00000018     rts2800_fpu32.lib : ll_aox28.asm.obj (.text)
+                  00083e6a    00000016     Angle.obj (.text)
+                  00083e80    00000012     rts2800_fpu32.lib : args_main.c.obj (.text)
+                  00083e92    00000009     ipark.obj (.text)
+                  00083e9b    00000009     rts2800_fpu32.lib : _lock.c.obj (.text)
+                  00083ea4    00000002                       : pre_init.c.obj (.text)
+                  00083ea6    00000001                       : startup.c.obj (.text)
 
 .econst    0    00090000    000001c9     
                   00090000    000001c0     F2837xD_PieVect.obj (.econst:_PieVectTableInit)
@@ -662,9 +662,9 @@ MODULE SUMMARY
        Module                           code    initialized data   uninitialized data
        ------                           ----    ----------------   ------------------
     .\
-       SVPWM.obj                        2516    552                442               
+       SVPWM.obj                        2528    552                442               
     +--+--------------------------------+-------+------------------+--------------------+
-       Total:                           2516    552                442               
+       Total:                           2528    552                442               
                                                                                      
     .\source\
        F2837xD_GlobalVariableDefs.obj   0       0                  8759              
@@ -714,7 +714,7 @@ MODULE SUMMARY
                                                                                      
        Stack:                           0       0                  512               
     +--+--------------------------------+-------+------------------+--------------------+
-       Grand Total:                     10411   2724               9724              
+       Grand Total:                     10423   2724               9724              
 
 
 GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
@@ -1021,11 +1021,11 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 page  address   name                                  
 ----  -------   ----                                  
 abs   ffffffff  .text                                 
-0     00083d55  C$$EXIT                               
-0     00083e2d  FS$$DIV                               
-0     00083e46  LL$$AND                               
-0     00083e4e  LL$$OR                                
-0     00083e56  LL$$XOR                               
+0     00083d61  C$$EXIT                               
+0     00083e39  FS$$DIV                               
+0     00083e52  LL$$AND                               
+0     00083e5a  LL$$OR                                
+0     00083e62  LL$$XOR                               
 1     0000a8a0  _AD2S                                 
 1     0000a812  _AD2S1210                             
 1     0000a810  _AD7606                               
@@ -1199,7 +1199,7 @@ abs   ffffffff  .text
 1     00047800  _Emif2Regs                            
 1     00000d00  _EmuBMode                             
 1     00000022  _EmuKey                               
-0     00083d9d  _EnableInterrupts                     
+0     00083da9  _EnableInterrupts                     
 1     0000a806  _Error_Flag                           
 0     00008623  _F28x_usDelay                         
 0     00082fc6  _FLASH_CORRECTABLE_ERROR_ISR          
@@ -1251,26 +1251,26 @@ abs   ffffffff  .text
 1     0000a81c  _IdRef                                
 1     0000a874  _Id_FDB_X                             
 0     000831f7  _InitAuxPll                           
-0     00083be2  _InitCAN                              
-0     00083b03  _InitEPwm10Gpio                       
-0     00083b16  _InitEPwm11Gpio                       
-0     00083b2a  _InitEPwm12Gpio                       
-0     00083a59  _InitEPwm1Gpio                        
-0     00083a6b  _InitEPwm2Gpio                        
-0     00083a7e  _InitEPwm3Gpio                        
-0     00083a92  _InitEPwm4Gpio                        
-0     00083aa5  _InitEPwm5Gpio                        
-0     00083ab7  _InitEPwm6Gpio                        
-0     00083ac9  _InitEPwm7Gpio                        
-0     00083add  _InitEPwm8Gpio                        
-0     00083af1  _InitEPwm9Gpio                        
+0     00083bee  _InitCAN                              
+0     00083b0f  _InitEPwm10Gpio                       
+0     00083b22  _InitEPwm11Gpio                       
+0     00083b36  _InitEPwm12Gpio                       
+0     00083a65  _InitEPwm1Gpio                        
+0     00083a77  _InitEPwm2Gpio                        
+0     00083a8a  _InitEPwm3Gpio                        
+0     00083a9e  _InitEPwm4Gpio                        
+0     00083ab1  _InitEPwm5Gpio                        
+0     00083ac3  _InitEPwm6Gpio                        
+0     00083ad5  _InitEPwm7Gpio                        
+0     00083ae9  _InitEPwm8Gpio                        
+0     00083afd  _InitEPwm9Gpio                        
 0     00082482  _InitEPwmExample                      
-0     00083a40  _InitEPwmGpio                         
+0     00083a4c  _InitEPwmGpio                         
 0     0000857e  _InitFlash                            
 0     00083686  _InitGpio                             
 0     00083060  _InitPeripheralClocks                 
-0     00083d7e  _InitPieCtrl                          
-0     00083da6  _InitPieVectTable                     
+0     00083d8a  _InitPieCtrl                          
+0     00083db2  _InitPieVectTable                     
 0     00083023  _InitSysCtrl                          
 0     00083131  _InitSysPll                           
 0     000826ad  _Init_AD2S1210                        
@@ -1420,34 +1420,34 @@ abs   ffffffff  ___c_args__
 abs   ffffffff  ___etext__                            
 abs   ffffffff  ___pinit__                            
 abs   ffffffff  ___text__                             
-0     00083e74  __args_main                           
+0     00083e80  __args_main                           
 1     0000a9c0  __lock                                
-0     00083e97  __nop                                 
-0     00083e93  __register_lock                       
-0     00083e8f  __register_unlock                     
+0     00083ea3  __nop                                 
+0     00083e9f  __register_lock                       
+0     00083e9b  __register_unlock                     
 1     00000400  __stack                               
-0     00083e9a  __system_post_cinit                   
-0     00083e98  __system_pre_init                     
+0     00083ea6  __system_post_cinit                   
+0     00083ea4  __system_pre_init                     
 1     0000a9c2  __unlock                              
-0     00083d55  _abort                                
+0     00083d61  _abort                                
 1     0000a88e  _angle1                               
 0     00082422  _angleREAD                            
 0     00008610  _angle_calc                           
-0     00083c2e  _atan                                 
-0     00083b93  _atan2                                
+0     00083c3a  _atan                                 
+0     00083b9f  _atan2                                
 1     0000a8cc  _az1gen_dq1                           
 0     00008000  _az1gendq_calc                        
 1     0000a82c  _bianma                               
 1     0000a82e  _bianma1                              
-0     00083b3d  _c_int00                              
+0     00083b49  _c_int00                              
 1     0000a8aa  _clarke1                              
 0     000085b5  _clarke_calc                          
-0     00083dcc  _copy_in                              
-0     00083cbb  _cos                                  
+0     00083dd8  _copy_in                              
+0     00083cc7  _cos                                  
 1     0000a9c4  _deviceOpen                           
 0     000838ca  _epwm4_isr                            
 1     0000a884  _errFlag                              
-0     00083d57  _exit                                 
+0     00083d63  _exit                                 
 0     00082955  _getCANMessage                        
 1     0000a801  _i                                    
 1     0000a83e  _idcan                                
@@ -1461,13 +1461,13 @@ abs   ffffffff  ___text__
 1     0000a842  _iqref                                
 1     0000a844  _iqref1                               
 1     0000a822  _iqtest                               
-0     00083e11  _isqrt                                
+0     00083e1d  _isqrt                                
 1     0000a804  _iss                                  
 1     0000a802  _j                                    
 0     00082a5b  _jieshou                              
 1     0000a803  _k                                    
 0     00082249  _main                                 
-0     00083d23  _memcpy                               
+0     00083d2f  _memcpy                               
 1     0000a880  _messageSize                          
 1     0000a82a  _msg6                                 
 1     0000a882  _msgCount                             
@@ -1493,9 +1493,9 @@ abs   ffffffff  ___text__
 0     00083637  _setup_emif1_pinmux_sdram_32bit       
 0     00083586  _setup_emif2_pinmux_async_16bit       
 0     00083609  _setup_emif2_pinmux_sdram_16bit       
-0     00083cef  _sin                                  
-0     00083c78  _sincos                               
-0     00083df0  _sqrt                                 
+0     00083cfb  _sin                                  
+0     00083c84  _sincos                               
+0     00083dfc  _sqrt                                 
 1     0000a8c0  _svgen_dq1                            
 0     000081fa  _svgendq_calc                         
 1     0000a832  _temp                                 
@@ -1746,46 +1746,46 @@ page  address   name
 0     00083895  _GPIO_ReadPin                         
 0     000838ac  _GPIO_WritePin                        
 0     000838ca  _epwm4_isr                            
-0     00083a40  _InitEPwmGpio                         
-0     00083a59  _InitEPwm1Gpio                        
-0     00083a6b  _InitEPwm2Gpio                        
-0     00083a7e  _InitEPwm3Gpio                        
-0     00083a92  _InitEPwm4Gpio                        
-0     00083aa5  _InitEPwm5Gpio                        
-0     00083ab7  _InitEPwm6Gpio                        
-0     00083ac9  _InitEPwm7Gpio                        
-0     00083add  _InitEPwm8Gpio                        
-0     00083af1  _InitEPwm9Gpio                        
-0     00083b03  _InitEPwm10Gpio                       
-0     00083b16  _InitEPwm11Gpio                       
-0     00083b2a  _InitEPwm12Gpio                       
-0     00083b3d  _c_int00                              
-0     00083b93  _atan2                                
-0     00083be2  _InitCAN                              
-0     00083c2e  _atan                                 
-0     00083c78  _sincos                               
-0     00083cbb  _cos                                  
-0     00083cef  _sin                                  
-0     00083d23  _memcpy                               
-0     00083d55  C$$EXIT                               
-0     00083d55  _abort                                
-0     00083d57  _exit                                 
-0     00083d7e  _InitPieCtrl                          
-0     00083d9d  _EnableInterrupts                     
-0     00083da6  _InitPieVectTable                     
-0     00083dcc  _copy_in                              
-0     00083df0  _sqrt                                 
-0     00083e11  _isqrt                                
-0     00083e2d  FS$$DIV                               
-0     00083e46  LL$$AND                               
-0     00083e4e  LL$$OR                                
-0     00083e56  LL$$XOR                               
-0     00083e74  __args_main                           
-0     00083e8f  __register_unlock                     
-0     00083e93  __register_lock                       
-0     00083e97  __nop                                 
-0     00083e98  __system_pre_init                     
-0     00083e9a  __system_post_cinit                   
+0     00083a4c  _InitEPwmGpio                         
+0     00083a65  _InitEPwm1Gpio                        
+0     00083a77  _InitEPwm2Gpio                        
+0     00083a8a  _InitEPwm3Gpio                        
+0     00083a9e  _InitEPwm4Gpio                        
+0     00083ab1  _InitEPwm5Gpio                        
+0     00083ac3  _InitEPwm6Gpio                        
+0     00083ad5  _InitEPwm7Gpio                        
+0     00083ae9  _InitEPwm8Gpio                        
+0     00083afd  _InitEPwm9Gpio                        
+0     00083b0f  _InitEPwm10Gpio                       
+0     00083b22  _InitEPwm11Gpio                       
+0     00083b36  _InitEPwm12Gpio                       
+0     00083b49  _c_int00                              
+0     00083b9f  _atan2                                
+0     00083bee  _InitCAN                              
+0     00083c3a  _atan                                 
+0     00083c84  _sincos                               
+0     00083cc7  _cos                                  
+0     00083cfb  _sin                                  
+0     00083d2f  _memcpy                               
+0     00083d61  C$$EXIT                               
+0     00083d61  _abort                                
+0     00083d63  _exit                                 
+0     00083d8a  _InitPieCtrl                          
+0     00083da9  _EnableInterrupts                     
+0     00083db2  _InitPieVectTable                     
+0     00083dd8  _copy_in                              
+0     00083dfc  _sqrt                                 
+0     00083e1d  _isqrt                                
+0     00083e39  FS$$DIV                               
+0     00083e52  LL$$AND                               
+0     00083e5a  LL$$OR                                
+0     00083e62  LL$$XOR                               
+0     00083e80  __args_main                           
+0     00083e9b  __register_unlock                     
+0     00083e9f  __register_lock                       
+0     00083ea3  __nop                                 
+0     00083ea4  __system_pre_init                     
+0     00083ea6  __system_post_cinit                   
 0     00086000  _RamfuncsLoadStart                    
 0     00086627  _RamfuncsLoadEnd                      
 0     00090000  _PieVectTableInit                     
