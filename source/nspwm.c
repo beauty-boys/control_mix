@@ -34,7 +34,7 @@ void nsgendq_calc(NSGENDQ *v)
         //上下是一样的 因为t1t2有区别
         v->Tb = 1/2-time[2]/2;
         v->Tc = (time[0]+time[1])/2;
-        v->Ta = -1;
+        v->Ta = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
         EPwm2Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
@@ -53,7 +53,7 @@ void nsgendq_calc(NSGENDQ *v)
     case 3://011-010-110-010-011 C- A+ B1
         v->Tc = 1/2-time[2]/2;
         v->Ta = (time[0]+time[1])/2;
-        v->Tb = -1;
+        v->Tb = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = 0;        // Phase is 0
         EPwm2Regs.TBPHS.bit.TBPHS =0 ;        // Phase is 0
@@ -73,7 +73,7 @@ void nsgendq_calc(NSGENDQ *v)
 
         v->Ta = 1/2-time[2]/2;
         v->Tb = (time[0]+time[1])/2;
-        v->Tc = -1;
+        v->Tc = 0;
 
         EPwm4Regs.TBPHS.bit.TBPHS = EPWM1_TIMER_TBPRD;        // Phase is 0
         EPwm2Regs.TBPHS.bit.TBPHS = 0 ;        // Phase is 0
@@ -81,7 +81,7 @@ void nsgendq_calc(NSGENDQ *v)
         break;
     case 6://100-101-001-101-100 C+ A- B0
 
-        v->Ta = time[2]/2;
+        v->Tc = time[2]/2;
         v->Ta = (1-time[2]-time[1])/2;
         v->Tb = 1;
 
