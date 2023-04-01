@@ -33,6 +33,8 @@ Next, definitions used in main file.
 #define EPWM1_MIN_CMPA 500 //≥ı º÷µ
 #define Sample_points 2048
 
+#define Change_Point 0.75
+#define Return_Point 0.55
 // Define the system frequency (MHz)
 
 

@@ -48,6 +48,9 @@
 
 int16 DAHALF=0x0800;
 int flagggg=0;
+
+int flag_mix=0;//混合调制标志位
+
 struct EXAD EXADRESULTS;
 
 struct SAMPLE SAMPLERUSELTS;
@@ -675,30 +678,63 @@ __interrupt void epwm4_isr(void)
 //                            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
 
             m = sqrt(ipark1.Alpha*ipark1.Alpha+ipark1.Beta*ipark1.Beta);
-
-            if(m<0.75&&m>=0)
+            switch(flag_mix)
             {
+            case 0://从AZ1->NS 大调制度
+                if(m<Change_Point&&m>=0)
+                    {
 
-                az1gen_dq1.Ualpha = ipark1.Alpha;
-                az1gen_dq1.Ubeta = ipark1.Beta;
-                az1gen_dq1.calc(&az1gen_dq1);
+                        az1gen_dq1.Ualpha = ipark1.Alpha;
+                        az1gen_dq1.Ubeta = ipark1.Beta;
+                        az1gen_dq1.calc(&az1gen_dq1);
 
-                EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
-                EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
-                EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
-                flagggg=0;
+                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                        EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                        EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                        flagggg=0;
+                    }
+                    else
+                    {
+                        nsgen_dq1.Ualpha = ipark1.Alpha;
+                        nsgen_dq1.Ubeta = ipark1.Beta;
+                        nsgen_dq1.calc(&nsgen_dq1);
+
+                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(nsgen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                        EPwm2Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                        EPwm3Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                        flagggg=1;
+                        flag_mix=1;//达到设定调制度 需要稳定运行
+                    }
+                break;
+            case 1:
+                if(m<Return_Point&&m>=0)
+                    {
+
+                        az1gen_dq1.Ualpha = ipark1.Alpha;
+                        az1gen_dq1.Ubeta = ipark1.Beta;
+                        az1gen_dq1.calc(&az1gen_dq1);
+
+                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                        EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                        EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                        flagggg=0;
+                        flag_mix=0;//达到设定调制度 需要稳定运行
+                    }
+                    else
+                    {
+                        nsgen_dq1.Ualpha = ipark1.Alpha;
+                        nsgen_dq1.Ubeta = ipark1.Beta;
+                        nsgen_dq1.calc(&nsgen_dq1);
+
+                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(nsgen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                        EPwm2Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                        EPwm3Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                        flagggg=1;
+                    }
+                break;
+
             }
-            else if(m>=0.75&&m<1)
-            {
-                nsgen_dq1.Ualpha = ipark1.Alpha;
-                nsgen_dq1.Ubeta = ipark1.Beta;
-                nsgen_dq1.calc(&nsgen_dq1);
 
-                EPwm4Regs.CMPA.bit.CMPA  = (int16)(nsgen_dq1.Ta*EPWM1_TIMER_TBPRD);
-                EPwm2Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tb*EPWM1_TIMER_TBPRD);
-                EPwm3Regs.CMPA.bit.CMPA = (int16)(nsgen_dq1.Tc*EPWM1_TIMER_TBPRD);
-                flagggg=1;
-            }
 
 //            EPwm4Regs.CMPA.bit.CMPA  = (int16)(svgen_dq1.Ta*EPWM1_TIMER_TBPRD);
 //            EPwm2Regs.CMPA.bit.CMPA = (int16)(svgen_dq1.Tb*EPWM1_TIMER_TBPRD);
