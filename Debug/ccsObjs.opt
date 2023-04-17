@@ -15,6 +15,7 @@
 "./source/F2837xD_sci_io.obj"
 "./source/F2837xD_usDelay.obj"
 "./source/FPUmathTables.obj"
+"./source/OCB_az1.obj"
 "./source/atan2_f32.obj"
 "./source/atan_f32.obj"
 "./source/az1gen_dp.obj"

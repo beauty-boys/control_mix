@@ -30,9 +30,11 @@ Next, Include project specific include files.
 #include "ipark.h"       		// Include header for the IPARK object 
 #include "pid_reg3.h"       	// Include header for the PIDREG3 object 
 #include "clarke.h"         	// Include header for the CLARKE object 
+
 #include "svgen_dq.h"       	// Include header for the SVGENDQ object 
 #include "az1gen_dp.h"
 #include "nspwm.h"
+#include "OCB_az1.h"
 
 //#include "speed_fr.h"			// Include header for the SPEED_MEAS_QEP object 
 #include "rampgen.h"        	// Include header for the RAMPGEN object 

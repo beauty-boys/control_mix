@@ -34,6 +34,7 @@ C_SRCS += \
 ../source/F2837xD_SysCtrl.c \
 ../source/F2837xD_can.c \
 ../source/F2837xD_sci_io.c \
+../source/OCB_az1.c \
 ../source/az1gen_dp.c \
 ../source/clarke.c \
 ../source/ipark.c \
@@ -62,6 +63,7 @@ C_DEPS += \
 ./source/F2837xD_SysCtrl.d \
 ./source/F2837xD_can.d \
 ./source/F2837xD_sci_io.d \
+./source/OCB_az1.d \
 ./source/az1gen_dp.d \
 ./source/clarke.d \
 ./source/ipark.d \
@@ -90,6 +92,7 @@ OBJS += \
 ./source/F2837xD_sci_io.obj \
 ./source/F2837xD_usDelay.obj \
 ./source/FPUmathTables.obj \
+./source/OCB_az1.obj \
 ./source/atan2_f32.obj \
 ./source/atan_f32.obj \
 ./source/az1gen_dp.obj \
@@ -141,6 +144,7 @@ OBJS__QUOTED += \
 "source\F2837xD_sci_io.obj" \
 "source\F2837xD_usDelay.obj" \
 "source\FPUmathTables.obj" \
+"source\OCB_az1.obj" \
 "source\atan2_f32.obj" \
 "source\atan_f32.obj" \
 "source\az1gen_dp.obj" \
@@ -174,6 +178,7 @@ C_DEPS__QUOTED += \
 "source\F2837xD_SysCtrl.d" \
 "source\F2837xD_can.d" \
 "source\F2837xD_sci_io.d" \
+"source\OCB_az1.d" \
 "source\az1gen_dp.d" \
 "source\clarke.d" \
 "source\ipark.d" \
@@ -211,6 +216,7 @@ C_SRCS__QUOTED += \
 "../source/F2837xD_SysCtrl.c" \
 "../source/F2837xD_can.c" \
 "../source/F2837xD_sci_io.c" \
+"../source/OCB_az1.c" \
 "../source/az1gen_dp.c" \
 "../source/clarke.c" \
 "../source/ipark.c" \

@@ -78,6 +78,7 @@ SVPWM.obj: E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/nspwm.h
 SVPWM.obj: D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/math.h
 SVPWM.obj: D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/_defs.h
 SVPWM.obj: D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/machine/_limits.h
+SVPWM.obj: E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/OCB_az1.h
 SVPWM.obj: E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/rampgen.h
 SVPWM.obj: E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/rmp_cntl.h
 SVPWM.obj: E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/angle.h
@@ -239,6 +240,8 @@ D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/math.h
 D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/_defs.h:
 
 D:/software/ti/ccs1220/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include/machine/_limits.h:
+
+E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/OCB_az1.h:
 
 E:/mix/workspace_ccs/White_Module_SiC_Inverter/include/rampgen.h:
 

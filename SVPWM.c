@@ -233,6 +233,8 @@ PIDREG3 pid1_spd = PIDREG3_DEFAULTS;
 SVGENDQ svgen_dq1 = SVGENDQ_DEFAULTS;
 AZ1GENDQ az1gen_dq1 = AZ1GENDQ_DEFAULTS;
 NSGENDQ nsgen_dq1 = NSGENDQ_DEFAULTS;
+OCB_AZ1GENDQ ocb_az1gen_dq1 = OCB_AZ1GENDQ_DEFAULTS;
+
 float m=0;
 
 
@@ -697,7 +699,9 @@ __interrupt void epwm4_isr(void)
                         }
                         else
                         {
-                            ;
+                            ocb_az1gen_dq1.Ualpha = ipark1.Alpha;
+                            ocb_az1gen_dq1.Ubeta = ipark1.Beta;
+                            ocb_az1gen_dq1.calc(&ocb_az1gen_dq1);
                         }
 
                     }
