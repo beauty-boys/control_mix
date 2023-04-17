@@ -105,21 +105,5 @@ void ocb_az1gendq_calc(OCB_AZ1GENDQ *v)
                 break;
         }
 
-//        if (Sector==0)  // Sector 0: this is special case for (Ualpha,Ubeta) = (0,0)
-//        {
-//           v->Ta = 0.5;
-//           v->Tb = 0.5;
-//           v->Tc = 0.5;
-//        }
-
-        else if (Sector==2)  // Sector 2: t1=Y and t2=-X (abc ---> Ta,Tc,Tb)
-        {
-
-        }
-
-        else if (Sector==6)  // Sector 6: t1=-Y and t2=-Z (abc ---> Tc,Ta,Tb)
-        {
-
-        }
         Sector_out =  judge_N(Sector);
 }

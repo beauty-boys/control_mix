@@ -14,6 +14,7 @@
 
 
 #pragma CODE_SECTION(ocb_az1gendq_calc, ".TI.ramfunc");
+extern int bdary;
 extern Uint32 Sector_out;
 extern Uint32 judge_N(Uint32 N);
 
