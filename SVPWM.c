@@ -621,6 +621,7 @@ __interrupt void epwm4_isr(void)
 //           {
 //               signal1[i]=angle1.Angle;
 //           }
+
             angle1.calc(&angle1);
 
             clarke1.As = SAMPLERUSELTS.IA;
@@ -680,20 +681,27 @@ __interrupt void epwm4_isr(void)
             m = sqrt(ipark1.Alpha*ipark1.Alpha+ipark1.Beta*ipark1.Beta);
             switch(flag_mix)
             {
-            case 0://从AZ1->NS 大调制度
-                if(m<Change_Point&&m>=0)
+            case 0://从AZ1->NS 大调制度 //防止频繁调回 高调制度防调回
+                if(m<Change_Point&&m>=0)//az1 先
                     {
+                        if(AngleReal/60> Angle_pianyi && AngleReal/60<(60-Angle_pianyi))//角度制
+                        {
+                            az1gen_dq1.Ualpha = ipark1.Alpha;
+                            az1gen_dq1.Ubeta = ipark1.Beta;
+                            az1gen_dq1.calc(&az1gen_dq1);
 
-                        az1gen_dq1.Ualpha = ipark1.Alpha;
-                        az1gen_dq1.Ubeta = ipark1.Beta;
-                        az1gen_dq1.calc(&az1gen_dq1);
+                            EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                            EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                            flagggg=0;
+                        }
+                        else
+                        {
+                            ;
+                        }
 
-                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
-                        EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
-                        EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
-                        flagggg=0;
                     }
-                    else
+                    else   //切换后 ns
                     {
                         nsgen_dq1.Ualpha = ipark1.Alpha;
                         nsgen_dq1.Ubeta = ipark1.Beta;
@@ -706,19 +714,25 @@ __interrupt void epwm4_isr(void)
                         flag_mix=1;//达到设定调制度 需要稳定运行
                     }
                 break;
-            case 1:
+            case 1://防止频繁调回 低调制度防调回
                 if(m<Return_Point&&m>=0)
                     {
+                        if(AngleReal/60> Angle_pianyi && AngleReal/60<(60-Angle_pianyi))//角度制
+                        {
+                            az1gen_dq1.Ualpha = ipark1.Alpha;
+                            az1gen_dq1.Ubeta = ipark1.Beta;
+                            az1gen_dq1.calc(&az1gen_dq1);
 
-                        az1gen_dq1.Ualpha = ipark1.Alpha;
-                        az1gen_dq1.Ubeta = ipark1.Beta;
-                        az1gen_dq1.calc(&az1gen_dq1);
-
-                        EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
-                        EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
-                        EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
-                        flagggg=0;
-                        flag_mix=0;//达到设定调制度 需要稳定运行
+                            EPwm4Regs.CMPA.bit.CMPA  = (int16)(az1gen_dq1.Ta*EPWM1_TIMER_TBPRD);
+                            EPwm2Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tb*EPWM1_TIMER_TBPRD);
+                            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
+                            flagggg=0;
+                            flag_mix=0;//达到设定调制度 需要稳定运行
+                        }
+                        else
+                        {
+                            ;
+                        }
                     }
                     else
                     {
