@@ -215,6 +215,8 @@ void EXADREAD(void);
 void InitEPwmExample(void);
 void angleREAD(void);
 void jieshou(void);
+
+int judge_boundary(float sita);
 __interrupt void epwm4_isr(void);
 
 // Instance a few transform objects
@@ -236,7 +238,7 @@ NSGENDQ nsgen_dq1 = NSGENDQ_DEFAULTS;
 OCB_AZ1GENDQ ocb_az1gen_dq1 = OCB_AZ1GENDQ_DEFAULTS;
 
 float m=0;
-
+int bdary=0;
 
 // Instance a ramp generator to simulate an Anglele  使用渐变生成器来模拟角度
 RAMPGEN rg1 = RAMPGEN_DEFAULTS;
@@ -681,12 +683,13 @@ __interrupt void epwm4_isr(void)
 //                            EPwm3Regs.CMPA.bit.CMPA = (int16)(az1gen_dq1.Tc*EPWM1_TIMER_TBPRD);
 
             m = sqrt(ipark1.Alpha*ipark1.Alpha+ipark1.Beta*ipark1.Beta);
+            bdary = judge_boundary(AngleReal);
             switch(flag_mix)
             {
             case 0://从AZ1->NS 大调制度 //防止频繁调回 高调制度防调回
                 if(m<Change_Point&&m>=0)//az1 先
                     {
-                        if(AngleReal/60> Angle_pianyi && AngleReal/60<(60-Angle_pianyi))//角度制
+                        if(bdary==0)//角度制
                         {
                             az1gen_dq1.Ualpha = ipark1.Alpha;
                             az1gen_dq1.Ubeta = ipark1.Beta;
@@ -702,6 +705,7 @@ __interrupt void epwm4_isr(void)
                             ocb_az1gen_dq1.Ualpha = ipark1.Alpha;
                             ocb_az1gen_dq1.Ubeta = ipark1.Beta;
                             ocb_az1gen_dq1.calc(&ocb_az1gen_dq1);
+
                         }
 
                     }
@@ -721,7 +725,7 @@ __interrupt void epwm4_isr(void)
             case 1://防止频繁调回 低调制度防调回
                 if(m<Return_Point&&m>=0)
                     {
-                        if(AngleReal/60> Angle_pianyi && AngleReal/60<(60-Angle_pianyi))//角度制
+                        if(bdary==0) //角度制
                         {
                             az1gen_dq1.Ualpha = ipark1.Alpha;
                             az1gen_dq1.Ubeta = ipark1.Beta;
@@ -1708,6 +1712,26 @@ void jieshou()
         iqcan1 = ((float)((float)(ucRXMsgData[2]<<8)+ucRXMsgData[3]-2000)*0.0004);
   //     iss++;
     }
+}
+
+int judge_boundary(float sita)
+{
+    //sita 的范围0-2pi吗？
+    //可以用循环来写
+    if((sita>0&&sita<Angle_pianyi) || ((sita>6*Angle_width-Angle_pianyi) && sita<6*Angle_width)) //-10~10
+        return 1;
+    else if(sita>Angle_width-Angle_pianyi && sita<Angle_width+Angle_pianyi) //50-70
+        return 2;
+    else if(sita>Angle_width*2-Angle_pianyi && sita<Angle_width*2+Angle_pianyi) //110-130
+        return 3;
+    else if(sita>Angle_width*3-Angle_pianyi && sita<Angle_width*3+Angle_pianyi) //110-130
+        return 4;
+    else if(sita>Angle_width*4-Angle_pianyi && sita<Angle_width*4+Angle_pianyi) //110-130
+        return 5;
+    else if(sita>Angle_width*5-Angle_pianyi && sita<Angle_width*5+Angle_pianyi) //110-130
+        return 6;
+    else
+        return 0;
 }
 //
 // End of file

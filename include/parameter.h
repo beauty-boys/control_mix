@@ -60,7 +60,9 @@ Next, definitions used in main file.
 #define PWM_TIMER_TBPRD   0x0EA6  // 0xEA6=3750=150M/2/10k/2
 
 
-#define Angle_pianyi 10
+#define Angle_pianyi PI/18
+#define Angle_width PI/3
+
 
 
 
